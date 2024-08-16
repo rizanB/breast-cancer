@@ -11,6 +11,13 @@ h1 {
     color: #2c3e50;
 }
 
+.description_with_buttons{
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    justify-content: center;
+}
+
 #action {
     background: white;
     padding: 20px;
@@ -56,4 +63,12 @@ button:hover {
     font-size: 18px;
     text-align: center;
     font-weight: bold;
+    padding: 4px;
+}
+
+.centered{
+    display: flex;
+    padding: 6px;
+    flex-direction: row;
+    justify-content: center;
 }

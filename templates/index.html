@@ -11,14 +11,18 @@
 <body>
     <h1>Benign/Malignant Breast Cancer Classifier</h1>
 
-    <button id="fillBenignValues" onclick="fillTestValues('benign')">Fill Benign Test Values</button>
-    <button id="fillMalignantValues" onclick="fillTestValues('malignant')">Fill Malignant Test Values</button>
+    <div class="centered testValueButtons">
+
+        <button id="fillBenignValues" onclick="fillTestValues('benign')">Fill Benign Test Values</button>
+        <button id="fillMalignantValues" onclick="fillTestValues('malignant')">Fill Malignant Test Values</button>
+    </div>
+
+    <span class="centered">I am using Wisconsin breast cancer dataset </a>   and pre-trained models to classify whether a cancer is benign or malignant. Pick a model, input features from Breast FNA, and hit predict! </span>
+
+    <div id="prediction-result"></div>
+
 
     <form id="action" action="/predict" method="post">
-        {% for feature, value in feature_list_with_test_values['benign'].items() %}
-        <label for="{{ feature }}">{{ feature }}</label>
-        <input type="text" name="{{ feature }}" id="{{ feature }}" value="{{ value }}" required>
-        {% endfor %}
 
         <label for="selected_model">Select Model:</label>
         <select name="selected_model" id="selected_model" required>
@@ -29,9 +33,17 @@
         </select>
 
         <button type="submit">Predict</button>
+
+        <h2>Features</h2>
+
+        {% for feature, value in feature_list_with_test_values['benign'].items() %}
+        <label for="{{ feature }}">{{ feature }}</label>
+        <input type="text" name="{{ feature }}" id="{{ feature }}" value="{{ value }}" required>
+        {% endfor %}
+
+
     </form>
 
-    <div id="prediction-result"></div>
 
     <script>
         document.getElementById('action').addEventListener('submit', async (event) => {
@@ -51,7 +63,6 @@
                 }
 
                 const result = await response.json();
-                console.log(result);
                 document.getElementById('prediction-result').textContent = `Model: ${result.selectedModel} Prediction: ${result.prediction == 0 ? "Benign" : "Malignant"}`;
             } catch (error) {
                 console.error(error)
