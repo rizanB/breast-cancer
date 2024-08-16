@@ -28,5 +28,21 @@ __Metrics__
 __Tweaks__
 - [ ] Hyperparameter tuning
 
+# Getting Started
 
+__Clone the repository__
+```
+~ git clone https://github.com/rizanB/breast-cancer.git .
+```
 
+__Take a look at the notebook__
+```
+~ my.ipynb
+```
+
+__Run the project__
+
+```
+pip install -r requirements.txt
+python app.py
+```
