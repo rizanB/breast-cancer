@@ -14,12 +14,16 @@ Tasks:
 
 __Models__
 - [x] Logistic regression
-- [ ] regression
-- [ ] Logistic regression
+- [x] Gaussian Naive bayes
+- [x] KNN
+- [x] SVM
+- [x] Decision Tree
+- [x] Random Forest
+- [x] Gradient Boosting
 
 __Metrics__
-- [x]  roc auc curve
 - [x]  confusion matrix
+- [x]  roc auc curve
 
 __Tweaks__
 - [ ] Hyperparameter tuning
