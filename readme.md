@@ -44,5 +44,5 @@ __Run the project__
 
 ```
 pip install -r requirements.txt
-python app.py
+python app.py #starts a local server using flask
 ```
