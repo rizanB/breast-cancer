@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Breast Cancer</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+
+<body>
+    <h1>Benign/Malignant Breast Cancer Classifier</h1>
+
+    <button id="fillBenignValues" onclick="fillTestValues('benign')">Fill Benign Test Values</button>
+    <button id="fillMalignantValues" onclick="fillTestValues('malignant')">Fill Malignant Test Values</button>
+
+    <form id="action" action="/predict" method="post">
+        {% for feature, value in feature_list_with_test_values['benign'].items() %}
+        <label for="{{ feature }}">{{ feature }}</label>
+        <input type="text" name="{{ feature }}" id="{{ feature }}" value="{{ value }}" required>
+        {% endfor %}
+
+        <label for="selected_model">Select Model:</label>
+        <select name="selected_model" id="selected_model" required>
+            <option value="">Choose a model</option>
+            {% for model in model_list %}
+            <option value="{{ model }}">{{ model }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <div id="prediction-result"></div>
+
+    <script>
+        document.getElementById('action').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+
+            try {
+
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                console.log(result);
+                document.getElementById('prediction-result').textContent = `Model: ${result.selectedModel} Prediction: ${result.prediction == 0 ? "Benign" : "Malignant"}`;
+            } catch (error) {
+                console.error(error)
+                document.getElementById('prediction-result').textContent = 'An error occurred while making the prediction. Please try again.';
+
+            }
+
+
+        });
+
+        function fillTestValues(caseType) {
+            const featureList = {{ feature_list_with_test_values| tojson
+        }};
+        const inputs = document.querySelectorAll('#action input[type="text"]');
+
+        inputs.forEach(input => {
+            const feature = input.name;
+            if (featureList[caseType][feature] !== undefined) {
+                input.value = featureList[caseType][feature];
+            }
+        });
+        }
+    </script>
+</body>
+
+</html>
