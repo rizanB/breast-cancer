@@ -40,9 +40,29 @@ __Take a look at the notebook__
 ~ my.ipynb
 ```
 
-__Run the project__
+__Running with Docker__
+
+1. Build Docker image
 
 ```
-pip install -r requirements.txt
-python app.py #starts a local server using flask
+docker build -t breast-cancer .
 ```
+2. Run a container with the image
+
+```
+docker run -p 5000:5000 breast-cancer
+```
+
+__Running without Docker__
+
+1. Install required packages
+```
+pip install -r requirements.txt
+```
+
+2. Start Flask server
+```
+python app.py 
+```
+__Accessing the application__
+Open a browser and visit http://localhost:5000.
