@@ -10,7 +10,8 @@ import seaborn as sns
 
 Tasks:
 
-- Train models to see which classifier performs best on the Winconsin breast cancer dataset
+- [x] Train models to see which classifier performs best on the Winconsin breast cancer dataset
+- [ ] Show performance metrics to user
 
 __Models__
 - [x] Logistic regression
