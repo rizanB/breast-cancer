@@ -8,6 +8,9 @@ import seaborn as sns
 
 # Overview
 
+![auc-roc comparison of classical models](screenshots/comp_classical_models.png)
+
+
 Tasks:
 
 - [x] Train models to see which classifier performs best on the Winconsin breast cancer dataset
@@ -23,8 +26,11 @@ __Models__
 - [x] Gradient Boosting
 
 __Metrics__
+
 - [x]  confusion matrix
+
 - [x]  roc auc curve
+
 
 __Tweaks__
 - [ ] Hyperparameter tuning
